@@ -2,3 +2,4 @@
 
 echo "All variables passed to script:$@"
 echo "All variables passed to script:$*"
+echo "Script name:$0"
