@@ -3,6 +3,8 @@
 
 USERID=$(id-u)
 
+Y="\e[33m"
+
 if [ $USERID -ne 0]; then
     echo "Error :: please run the scripts with root privaliages"
     exit 1
@@ -17,9 +19,28 @@ VALIDATE(){
     fi
 }
 
-dnf install mysql -y
-VALIDATE $? "mysql"
-dnf install nginx -y
-VALIDATE $? "nginx"
-dnf install mongodb-mongosh -y
-VALIDATE $? "mongodb"
+
+if [ $? -ne 0 ]; then
+    dnf install mysql -y
+    VALIDATE $? "mysql"
+else 
+    echo -e "mysql allready exist ... $Y Skipping"
+fi
+
+if [ $? -ne 0 ]; then
+    dnf install nginx -y
+    VALIDATE $? "nginx"
+else 
+    echo -e "nginx allready exist ... $Y Skipping"
+fi
+
+if [ $? -ne 0 ]; then
+    dnf install python -y
+    VALIDATE $? "python"
+else 
+    echo -e "python allready exist ... $Y Skipping"
+fi
+
+
+
+
