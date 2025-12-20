@@ -19,7 +19,7 @@ VALIDATE(){
     fi
 }
 
-
+dnf install mysql -y
 if [ $? -ne 0 ]; then
     dnf install mysql -y
     VALIDATE $? "mysql"
@@ -27,6 +27,7 @@ else
     echo -e "mysql allready exist ... $Y Skipping"
 fi
 
+dnf install nginx -y
 if [ $? -ne 0 ]; then
     dnf install nginx -y
     VALIDATE $? "nginx"
@@ -34,6 +35,7 @@ else
     echo -e "nginx allready exist ... $Y Skipping"
 fi
 
+dnf install python -y
 if [ $? -ne 0 ]; then
     dnf install python -y
     VALIDATE $? "python"
